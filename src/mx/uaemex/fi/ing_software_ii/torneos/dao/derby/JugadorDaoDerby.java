@@ -1,3 +1,9 @@
+/*
+ * @José Juan García Romero
+ * @Luis Angel Rocha Ronquillo
+ * 
+ * */
+
 package mx.uaemex.fi.ing_software_ii.torneos.dao.derby;
 
 import mx.uaemex.fi.ing_software_ii.torneos.dao.dto.Jugador;
