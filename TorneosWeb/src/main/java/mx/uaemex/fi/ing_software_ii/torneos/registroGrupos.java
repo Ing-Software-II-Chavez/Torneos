@@ -83,7 +83,8 @@ public class registroGrupos extends HttpServlet {
 	            
 	            request.getRequestDispatcher("grupos.jsp").forward(request, response);
 	        } catch (Exception e) {
-	            throw new ServletException(e.getMessage());
+//	            throw new ServletException(e.getMessage());
+	        	response.getWriter().write("<h1>Algo salio mal...</h1><br><br><h1>" + e.getMessage() + "</h1>");
 	        } finally {
 	            try {
 	                if (con != null) {

@@ -73,7 +73,7 @@
     <h1 style="text-align: center;">Crear Torneo</h1>
     
     <label for="idtorneo">ID del Torneo:</label>
-    <input type="text" id="idtorneo" name="idtorneo" required>
+    <input type="number" id="idtorneo" name="idtorneo" required>
     
     <label for="nombre">Nombre del Torneo:</label>
     <input type="text" id="nombre" name="nombre" required>
@@ -99,7 +99,7 @@
     <input type="date" id="fechaFin" name="fechaFin" required>
 
     <label for="numGrupos">Número de Grupos:</label>
-    <input type="text" id="numGrupos" name="numGrupos" required>
+    <input type="number" id="numGrupos" name="numGrupos" required>
 
     <input type="submit" value="Enviar">
 
