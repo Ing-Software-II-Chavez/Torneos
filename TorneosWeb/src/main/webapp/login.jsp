@@ -12,6 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="assets/css/login.css">
     <title>Iniciar Sesi&oacute;n</title>
     <style>
         body {
@@ -95,20 +96,37 @@
 <body>
     <div class="container">
         <h1>Iniciar sesi&oacute;n</h1>
-        <form method="post" action="loginServlet">
+        <form method="post" action="login">
             <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" required>
+            <input type="text" id="usuario" name="usuario" value="${usuarioGC}" required>
 
             <label for="contrasena">Contrase&ntilde;a:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
+            <input type="password" id="contrasena" name="contrasena" value="${passwordGC}"required>
 
             <div class="buttons">
                 <input type="submit" value="Iniciar sesi&oacute;n">
                 <input type="reset" value="Limpiar">
             </div>
+            <%
+			    // Verificar si hay un mensaje de error y mostrarlo en caso afirmativo
+			    String errorMessage = (String)request.getAttribute("error");
+			    if (errorMessage != null) {
+					%>
+					<div id="errorPopup" class="modal">
+					    <div class="modal-content error-message">
+					        <span class="close" onclick="cerrarPopup()">&times;</span>
+					        <p style="color: black !important;"><%= errorMessage %></p>
+					    </div>
+					</div>
+					
+					<%
+			    }
+			%>
         </form>
 
         <p>¿No tienes una cuenta? <a href="registroJugador">Reg&iacute;strate</a></p>
     </div>
+    
+    <script type="text/javascript" src="assets/js/login.js"></script>
 </body>
 </html>

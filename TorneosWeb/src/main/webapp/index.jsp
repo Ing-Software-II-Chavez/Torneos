@@ -71,7 +71,7 @@
         <div class="seccion">
             <h2>Iniciar Sesión</h2>
             <p>Ingresa a tu perfil (solo para jugadores).</p>
-            <a href="login.jsp" class="boton">Iniciar Sesión</a>
+            <a href="login" class="boton">Iniciar Sesión</a>
         </div>
     </div>
 

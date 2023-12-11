@@ -20,6 +20,7 @@ import java.util.Map;
 
 import mx.uaemex.fi.ing_software_ii.torneos.dao.dto.Equipo;
 import mx.uaemex.fi.ing_software_ii.torneos.dao.error.PersistenciaException;
+import mx.uaemex.fi.ing_software_ii.torneos.dao.dto.Jugadores_Equipo;
 
 public class EquipoDaoDerbyImp implements EquipoDaoDerby {
 
@@ -124,6 +125,56 @@ public class EquipoDaoDerbyImp implements EquipoDaoDerby {
             throw new PersistenciaException(ex);
         }
     }
+    
+    public List<Equipo> getEquipos(Equipo e) {
+		Statement stmt;
+	    String sql;
+	    ResultSet rs;
+	    Map<String, Object> atributos;
+	    Equipo consultado;
+	    List<Equipo> equipos = new ArrayList<>();
+
+	    try {
+	        stmt = this.con.createStatement();
+	        sql = "SELECT * FROM EQUIPOS";
+	        atributos = this.getAtributos(e);
+
+	        if (!atributos.isEmpty()) {
+	            sql += " WHERE ";
+	            for (Map.Entry<String, Object> coso : atributos.entrySet()) {
+	                String key = coso.getKey();
+	                Object value = coso.getValue();
+	                String cad = key + "=";
+
+	                if (value instanceof String) {
+	                    cad += "'" + value.toString() + "' and ";
+	                } else {
+	                    cad += value.toString() + " and ";
+	                }
+	                sql += cad;
+	            }
+	            sql = sql.substring(0, sql.length() - 5);
+	        }
+
+	        System.out.println(sql);
+	        rs = stmt.executeQuery(sql);
+
+	        while (rs.next()) {
+	            consultado = new Equipo();
+	            consultado.setId(rs.getInt("ID"));
+	            consultado.setNombre(rs.getString("NOMBRE"));
+	            equipos.add(consultado);
+	        }
+
+	        stmt.close();
+	        con.close();
+	        return equipos;
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	        throw new PersistenciaException(ex);
+	    }
+	}
 
     /**
      * Consulta la lista completa de los equipos.

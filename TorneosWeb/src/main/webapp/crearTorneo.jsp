@@ -68,7 +68,7 @@
 </head>
 <body>
 
-  <form action="torneoForm" method="post">
+  <form action="registroTorneo" method="post">
 
     <h1 style="text-align: center;">Crear Torneo</h1>
     

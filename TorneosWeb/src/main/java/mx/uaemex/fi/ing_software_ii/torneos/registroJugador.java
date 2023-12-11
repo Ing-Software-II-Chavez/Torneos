@@ -104,12 +104,15 @@ public class registroJugador extends HttpServlet {
         		realDao = new JugadorDaoDerbyImp();
         		realDao.setCon(con);
         		dao = realDao;
-		
-        		if((realDao.getCredentials(jugador).getNumCuenta() + "").equals("0")) {
+        		
+        		
+        		
+//        		if(nCuenta == 0) {
 	        		jugador.setNombre(nombre);
 	        		jugador.setPrimerApellido(primerApellido);
 	        		jugador.setSegundoApellido(segundoApellido);
 	        		jugador.setFechaNacimiento(fechaNacimiento);
+	        		jugador.setNumCuenta(Integer.parseInt(numCuenta));
 	        		jugador.setCorreo(correo);
 	        		jugador.setUsuario(usuario);
 	        		jugador.setContrasena(contrasena);
@@ -120,18 +123,19 @@ public class registroJugador extends HttpServlet {
         			HttpSession session = request.getSession(true);
         			
             		session.setAttribute("jugador", jugador);
-        		}else {
-        			request.setAttribute("nombreGC", nombre);
-        	        request.setAttribute("primerApellidoGC", primerApellido);
-        	        request.setAttribute("segundoApellidoGC", segundoApellido);
-        	        request.setAttribute("fechaNacimientoGC", fechaNacimiento);
-        	        request.setAttribute("numeroCuentaGC", numCuenta);
-        	        request.setAttribute("correoGC", correo);
-        	        request.setAttribute("usuarioGC", usuario);
-        	        request.setAttribute("passwordGC", contrasena);
-        			request.setAttribute("error", "El usuario con número de cuenta: " + numCuenta + " ya existe.");
-            	    request.getRequestDispatcher("registro.jsp").forward(request, response);
-        		}
+            		request.getRequestDispatcher("respuesta.jsp").forward(request, response);
+//        		}else {
+//        			request.setAttribute("nombreGC", nombre);
+//        	        request.setAttribute("primerApellidoGC", primerApellido);
+//        	        request.setAttribute("segundoApellidoGC", segundoApellido);
+//        	        request.setAttribute("fechaNacimientoGC", fechaNacimiento);
+//        	        request.setAttribute("numeroCuentaGC", numCuenta);
+//        	        request.setAttribute("correoGC", correo);
+//        	        request.setAttribute("usuarioGC", usuario);
+//        	        request.setAttribute("passwordGC", contrasena);
+//        			request.setAttribute("error", "El usuario con número de cuenta: " + numCuenta + " ya existe.");
+//            	    request.getRequestDispatcher("registro.jsp").forward(request, response);
+//        		}
         		
         	} catch (Exception e) {
         		request.setAttribute("nombreGC", nombre);
@@ -211,6 +215,7 @@ public class registroJugador extends HttpServlet {
 	    response.addCookie(fechaNac_Cookie);
 	    response.addCookie(numCuenta_Cookie);
 	    response.addCookie(correo_Cookie);
+	    response.addCookie(usuario_Cookie);
 	    response.addCookie(contrasena_Cookie);
 	}
 	

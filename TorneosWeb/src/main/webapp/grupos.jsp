@@ -58,7 +58,7 @@
     int numGruposInt = Integer.parseInt(request.getAttribute("numGrupos").toString());
 %>
 
-<form action="formulariogrupos">
+<form action="registroGrupos" method="post">
     <%
         for (int i = 1; i <= numGruposInt; i++) {
     %>

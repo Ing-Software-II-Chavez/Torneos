@@ -13,6 +13,7 @@ public class Jugadores_Equipo {
     
     private int jugador;
     private int equipo;
+    private String nombre_equipo;
     
     public int getJugador() {
         return jugador;
@@ -27,9 +28,16 @@ public class Jugadores_Equipo {
         this.equipo = equipo;
     }
     
+    public String getNombre_equipo() {
+        return nombre_equipo;
+    }
+    public void setNombre_equipo(String nombre_equipo) {
+        this.nombre_equipo = nombre_equipo;
+    }
+    
     @Override
     public String toString() {
-        return "Jugadores_Equipo [jugador=" + jugador + ", equipo=" + equipo + "]";
+        return "Jugadores_Equipo [jugador=" + jugador + ", equipo=" + equipo + ", nombre_equipo=" + nombre_equipo + "]";
     }
 
     
