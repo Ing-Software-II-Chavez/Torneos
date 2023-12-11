@@ -50,6 +50,49 @@ public class JugadorDaoDerbyImp implements  JugadorDaoDerby{
         }
     }
 
+    public Jugador getCredentials(Jugador j) {
+    	Statement stmt;
+		String sql, cad;
+		ResultSet rs;
+		Map<String, Object> atributos;
+		Jugador consultado;
+		
+		try {
+			stmt = this.con.createStatement();
+			sql = "SELECT * FROM JUGADORES WHERE ";
+			atributos = this.getAtributos(j);
+			
+			if(atributos.size()>0) {
+				for (Map.Entry<String, Object> coso : atributos.entrySet()) {
+				    String key = coso.getKey();
+				    Object value = coso.getValue();
+				    cad = key+"=";
+				    if(value instanceof String) {
+				    	cad +="'"+value.toString()+"' and ";
+				    } else {
+				    	cad += value.toString()+ " and ";
+				    }
+				    sql+=cad;
+				}
+				sql = sql.substring(0,sql.length()-5);
+				rs = stmt.executeQuery(sql);
+				consultado = new Jugador();
+				while(rs.next()) {
+					
+					consultado.setUsuario(rs.getString("usuario"));
+					consultado.setContrasena(rs.getString("contrasena"));
+				
+				}
+				return consultado;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenciaException(e);
+		}             
+    }
+
     /**
      * Consulta de una lista de Jugadores siguiendo la filosof&iacute;a de query-by-example, de forma que
      * la consulta se realizar&aacute; usando las caracter&iacute;sticas del par&aacute;metro.
