@@ -5,7 +5,7 @@ function validarContraseña() {
 	var contraseña = document.getElementById('password').value;
 	var contraseñaValida = true;
 	var mensajeError = '';    
-	
+	validar_numero()
 	if (contraseña.length < 6) {
 		contraseñaValida = false;
 		mensajeError += 'La contraseña debe tener al menos 6 caracteres.<br>';
@@ -38,3 +38,26 @@ function validarContraseña() {
 	return true;
 }
 document.querySelector('form').onsubmit = validarContraseña;
+
+function validar_numero() {
+	const input_num = document.getElementById('numerocuenta');
+	const numero = input_num.value.trim();
+	
+	const regex = /^[0-9]+$/;
+	
+	if (!regex.test(numero) && numero.length != 7) {
+        alert('Ingrese un número de cuenta válido de 7 dígitos.');
+    }
+
+}
+
+window.onload = function() {
+            if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD) {
+                window.location.href = "login.jsp";
+            }
+        }
+
+
+
+
+

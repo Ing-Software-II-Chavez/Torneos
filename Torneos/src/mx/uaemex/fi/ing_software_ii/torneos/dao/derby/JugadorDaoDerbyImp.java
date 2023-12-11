@@ -58,7 +58,11 @@ public class JugadorDaoDerbyImp implements  JugadorDaoDerby{
 		Jugador consultado;
 		
 		try {
+<<<<<<< HEAD
 			stmt = this.conexion.createStatement();
+=======
+			stmt = this.con.createStatement();
+>>>>>>> f3264da (loginServlet)
 			sql = "SELECT * FROM JUGADORES WHERE ";
 			atributos = this.getAtributos(j);
 			

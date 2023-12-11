@@ -98,7 +98,7 @@
             </div>
         </form>
 
-        <p>¿No tienes una cuenta? <a href="registro.jsp">Reg&iacute;strate</a></p>
+        <p>¿No tienes una cuenta? <a href="registroJugador">Reg&iacute;strate</a></p>
     </div>
 </body>
 </html>
