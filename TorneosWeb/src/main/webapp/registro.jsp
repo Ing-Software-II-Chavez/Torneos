@@ -1,3 +1,13 @@
+<!--
+	@José Juan García Romero
+	@Luis Angel Rocha Ronquillo
+	@Jesús Alberto Sanchez Mendieta
+	@Isaac Misael Vazquez Albor
+	@Francisco Gamaliel Alvaro Portillo
+-->
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,16 +31,16 @@
 		    <label for="fechanacimiento">Fecha de Nacimiento:</label>
 		    <input type="date" id="fechanacimiento" name="fechanacimiento" value="${fechaNacimientoGC}" required>
 		
-		    <label for="numerocuenta">N�mero de Cuenta:</label>
+		    <label for="numerocuenta">Número de Cuenta:</label>
 		    <input type="number" id="numerocuenta" name="numerocuenta" value="${numeroCuentaGC}" required maxlength="7">
 		
-		    <label for="correo">Correo Electr�nico:</label>
+		    <label for="correo">Correo Electrónico:</label>
 		    <input type="email" id="correo" name="correo" value="${correoGC}" required>
 		
 		    <label for="login">Nombre de Usuario:</label>
 		    <input type="text" id="login" name="login" value="${usuarioGC}" required>
 		
-		    <label for="password">Contrase�a:</label>
+		    <label for="password">Contraseña:</label>
 		    <input type="password" id="password" name="password" value="${passwordGC}" required>
 		    <span id="passwordError" style="color: red;"></span>
 		
@@ -43,9 +53,13 @@
 	    String errorMessage = (String)request.getAttribute("error");
 	    if (errorMessage != null) {
 			%>
-			<div class="error-message">
-				<%= errorMessage %>
+			<div id="errorPopup" class="modal">
+			    <div class="modal-content error-message">
+			        <span class="close" onclick="cerrarPopup()">&times;</span>
+			        <p><%= errorMessage %></p>
+			    </div>
 			</div>
+			
 			<%
 	    }
 	%>

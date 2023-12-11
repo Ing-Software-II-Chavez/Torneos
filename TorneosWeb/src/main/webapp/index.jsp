@@ -1,5 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<!--
+	@José Juan García Romero
+	@Luis Angel Rocha Ronquillo
+	@Jesús Alberto Sanchez Mendieta
+	@Isaac Misael Vazquez Albor
+	@Francisco Gamaliel Alvaro Portillo
+-->
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

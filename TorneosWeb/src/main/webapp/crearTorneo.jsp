@@ -1,3 +1,13 @@
+<!--
+	@José Juan García Romero
+	@Luis Angel Rocha Ronquillo
+	@Jesús Alberto Sanchez Mendieta
+	@Isaac Misael Vazquez Albor
+	@Francisco Gamaliel Alvaro Portillo
+-->
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -75,7 +85,7 @@
       <option value="voleybol">Voleybol</option>
     </select>
 
-    <label for="numEquipos">N�mero de Equipos:</label>
+    <label for="numEquipos">Número de Equipos:</label>
     <select id="numEquipos" name="numEquipos" required>
       <option value="8">8</option>
       <option value="16">16</option>
@@ -88,7 +98,7 @@
     <label for="fechaFin">Fecha de Fin:</label>
     <input type="date" id="fechaFin" name="fechaFin" required>
 
-    <label for="numGrupos">N�mero de Grupos:</label>
+    <label for="numGrupos">Número de Grupos:</label>
     <input type="text" id="numGrupos" name="numGrupos" required>
 
     <input type="submit" value="Enviar">

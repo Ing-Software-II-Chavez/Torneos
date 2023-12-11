@@ -10,7 +10,7 @@ package mx.uaemex.fi.ing_software_ii.torneos.dao.dto;
 
 public class Jugador {
 
-    private int id;
+//    private int id;
     private int numCuenta;
     private String nombre;
     private String primerApellido;
@@ -22,13 +22,13 @@ public class Jugador {
 
     public Jugador() { }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public int getNumCuenta() {
         return numCuenta;

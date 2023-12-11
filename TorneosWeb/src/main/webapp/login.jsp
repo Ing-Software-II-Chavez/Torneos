@@ -1,3 +1,13 @@
+<!--
+	@José Juan García Romero
+	@Luis Angel Rocha Ronquillo
+	@Jesús Alberto Sanchez Mendieta
+	@Isaac Misael Vazquez Albor
+	@Francisco Gamaliel Alvaro Portillo
+-->
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +95,7 @@
 <body>
     <div class="container">
         <h1>Iniciar sesi&oacute;n</h1>
-        <form>
+        <form method="post" action="loginServlet">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required>
 
@@ -98,7 +108,7 @@
             </div>
         </form>
 
-        <p>�No tienes una cuenta? <a href="registroJugador">Reg&iacute;strate</a></p>
+        <p>¿No tienes una cuenta? <a href="registroJugador">Reg&iacute;strate</a></p>
     </div>
 </body>
 </html>

@@ -1,3 +1,11 @@
+/*
+ * @José Juan García Romero
+ * @Luis Angel Rocha Ronquillo
+ * @Jesús Alberto Sanchez Mendieta
+ * @Isaac Misael Vazquez Albor
+ * @Francisco Gamaliel Alvaro Portillo
+ * 
+ * */
 package mx.uaemex.fi.ing_software_ii.torneos;
 
 import jakarta.servlet.ServletConfig;
@@ -14,6 +22,7 @@ import mx.uaemex.fi.ing_software_ii.torneos.dao.dto.Jugador;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -24,14 +33,14 @@ public class registroJugador extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private DataSource ds;
     
-    String nombre;
-    String primerApellido;
-    String segundoApellido;
-    String fechaNacimiento;
-    String numCuenta;
-    String correo;
-    String usuario;
-    String contrasena;
+    private String nombre;
+    private String primerApellido;
+    private String segundoApellido;
+    private String fechaNacimiento;
+    private String numCuenta;
+    private String correo;
+    private String usuario;
+    private String contrasena;
     
 
     public void init(ServletConfig config) throws ServletException {
@@ -64,6 +73,7 @@ public class registroJugador extends HttpServlet {
         Jugador jugador = new Jugador();
         
         String[]cookies_names = {"nombre", "primerApellido", "segundoApellido", "fechaNacimiento", "numCuenta", "correo", "usuario", "contrasena"};
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
         
         if(CookiesExist(request, cookies_names)) {
 	        nombre = obtenerValorCookie(request, cookies_names[0]);
@@ -76,10 +86,12 @@ public class registroJugador extends HttpServlet {
 	        contrasena = obtenerValorCookie(request, cookies_names[7]);
 	        
         }else {
+        	
         	nombre = request.getParameter("nombre");
 	        primerApellido = request.getParameter("apellido");
 	        segundoApellido = request.getParameter("segundoapellido");
 	        fechaNacimiento = request.getParameter("fechanacimiento");
+//	        fechaNacimiento = formatter.format(fechaNacimiento);
 	        numCuenta = request.getParameter("numerocuenta");
 	        correo = request.getParameter("correo");
 	        usuario = request.getParameter("login");
@@ -93,23 +105,45 @@ public class registroJugador extends HttpServlet {
         		realDao.setCon(con);
         		dao = realDao;
 		
-        		jugador.setNombre(nombre);
-        		jugador.setPrimerApellido(primerApellido);
-        		jugador.setSegundoApellido(segundoApellido);
-        		jugador.setFechaNacimiento(fechaNacimiento);
-        		jugador.setNumCuenta(Integer.parseInt(numCuenta));
-        		jugador.setCorreo(correo);
-        		jugador.setUsuario(usuario);
-        		jugador.setContrasena(contrasena);
-		
-        		dao.create(jugador);
-
-        		HttpSession session = request.getSession(true);
-		
-        		session.setAttribute("jugador", jugador);
+        		if((realDao.getCredentials(jugador).getNumCuenta() + "").equals("0")) {
+	        		jugador.setNombre(nombre);
+	        		jugador.setPrimerApellido(primerApellido);
+	        		jugador.setSegundoApellido(segundoApellido);
+	        		jugador.setFechaNacimiento(fechaNacimiento);
+	        		jugador.setCorreo(correo);
+	        		jugador.setUsuario(usuario);
+	        		jugador.setContrasena(contrasena);
+        		
+        			dao.create(jugador);
+        			eliminarCookiesExistentes(request,response);
+        			
+        			HttpSession session = request.getSession(true);
+        			
+            		session.setAttribute("jugador", jugador);
+        		}else {
+        			request.setAttribute("nombreGC", nombre);
+        	        request.setAttribute("primerApellidoGC", primerApellido);
+        	        request.setAttribute("segundoApellidoGC", segundoApellido);
+        	        request.setAttribute("fechaNacimientoGC", fechaNacimiento);
+        	        request.setAttribute("numeroCuentaGC", numCuenta);
+        	        request.setAttribute("correoGC", correo);
+        	        request.setAttribute("usuarioGC", usuario);
+        	        request.setAttribute("passwordGC", contrasena);
+        			request.setAttribute("error", "El usuario con número de cuenta: " + numCuenta + " ya existe.");
+            	    request.getRequestDispatcher("registro.jsp").forward(request, response);
+        		}
         		
         	} catch (Exception e) {
-        		response.getWriter().write("ERROR:\n\n" + e.getMessage());
+        		request.setAttribute("nombreGC", nombre);
+    	        request.setAttribute("primerApellidoGC", primerApellido);
+    	        request.setAttribute("segundoApellidoGC", segundoApellido);
+    	        request.setAttribute("fechaNacimientoGC", fechaNacimiento);
+    	        request.setAttribute("numeroCuentaGC", numCuenta);
+    	        request.setAttribute("correoGC", correo);
+    	        request.setAttribute("usuarioGC", usuario);
+    	        request.setAttribute("passwordGC", contrasena);
+            	request.setAttribute("error", "Algo ha salido mal, rectifique que los datos sean correctos!");
+        	    request.getRequestDispatcher("registro.jsp").forward(request, response);
         	}
         }else if(!validarPassword(contrasena)){
         	request.setAttribute("nombreGC", nombre);

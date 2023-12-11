@@ -1,3 +1,11 @@
+/*
+ * @José Juan García Romero
+ * @Luis Angel Rocha Ronquillo
+ * @Jesús Alberto Sanchez Mendieta
+ * @Isaac Misael Vazquez Albor
+ * @Francisco Gamaliel Alvaro Portillo
+ * 
+ * */
 package mx.uaemex.fi.ing_software_ii.torneos;
 
 import java.sql.Connection;
