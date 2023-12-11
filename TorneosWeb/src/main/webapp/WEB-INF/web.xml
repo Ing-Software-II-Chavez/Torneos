@@ -44,5 +44,5 @@
   <servlet-mapping>
 	<servlet-name>registroGrupos</servlet-name>
 	<url-pattern>/registroGrupos</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> 
 </web-app>
